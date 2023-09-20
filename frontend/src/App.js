@@ -16,10 +16,12 @@ import { loadUser } from "./slices/authSlice";
 import CheckoutSuccess from "./components/CheckoutSuccess";
 import Dashboard from "./components/admin/Dashboard";
 import Products from "./components/admin/Products";
+import ProductsList from "./components/admin/list/ProductsList";
 import Users from "./components/admin/Users";
-import Orders from "./components/admin/Oders";
+import Orders from "./components/admin/Orders";
 import Summary from "./components/admin/Summary";
 import CreateProduct from "./components/admin/CreateProduct";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,7 @@ function App() {
             <Route path="/admin" element={<Dashboard />}>
               <Route path="summary" element={<Summary />} />
               <Route path="products" element={<Products />}>
+              <Route index element = {<ProductsList />} />
                 <Route path="create-product" element={<CreateProduct />} />
               </Route>
               <Route path="users" element={<Users />} />

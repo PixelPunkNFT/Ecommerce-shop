@@ -9,12 +9,12 @@ const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
-  console.log(auth);
+  
 
   return (
     <nav className="nav-bar">
       <Link to="/">
-        <h2>OnlineShop</h2>
+        <h2>E-Commerce</h2>
       </Link>
       <Link to="/cart">
         <div className="nav-bag">
@@ -51,8 +51,8 @@ const NavBar = () => {
         </Links>
       ) : (
         <AuthLinks>
-          <Link to="/login">Login</Link>
-          <Link to="register">Register</Link>
+          <Link to="/login">Accedi</Link>
+          <Link to="register">Registrati</Link>
         </AuthLinks>
       )}
     </nav>

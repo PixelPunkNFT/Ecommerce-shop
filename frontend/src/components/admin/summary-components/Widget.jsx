@@ -3,11 +3,15 @@ import styled from "styled-components";
 const Widget = ({ data }) => {
   return (
     <StyleWidget>
-      <Icon color={data.color} bgColor={data.bgColor}></Icon>
+      <Icon color={data.color} bgColor={data.bgColor}>
+        {data.icon}
+      </Icon>
       <Text>
-        <h3>{data.isMoney 
-        ? "$" + data.digits?.toLocaleString() : data.digits?.toLocaleString()
-        }
+        <h3>
+          {data.isMoney 
+            ? "$" + data.digits?.toLocaleString() 
+            : data.digits?.toLocaleString()
+          }
         </h3>
         <p>{data.title}</p>
       </Text>
@@ -36,7 +40,7 @@ const Icon = styled.div`
   color: ${({ color }) => color};
   background: ${({ bgColor }) => bgColor};
   border-radius: 3px;
-  font-size: 20px;
+  font-size: 30px;
 `;
 
 const Text = styled.div`
@@ -45,11 +49,12 @@ const Text = styled.div`
   }
 
   p {
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
 const Percentage = styled.div`
   margin-left: 0.5rem;
-  font-size: 14px;
-  color: ${({ isPositive }) => (isPositive ? "rgb(122, 77, 73)" : "rgb(255, 77, 73)")};
+  font-size: 18px;
+  color: ${({ isPositive }) => 
+  isPositive ? "rgb(144, 225, 40)" : "rgb(255, 77, 73)"};
 `;

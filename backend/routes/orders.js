@@ -1,5 +1,8 @@
-const { Order } = require("../models/Order");
+const { Order } = require("../models/order");
+// const { Order } = require("../models/order");
 const { auth, isUser, isAdmin } = require("../middleware/auth");
+const moment = require("moment");
+
 
 const router = require("express").Router();
 
@@ -16,6 +19,38 @@ router.post("/", auth, async (req, res) => {
     res.status(200).send(savedOrder);
   } catch (err) {
     res.status(500).send(err);
+  }
+});
+
+// Endpoint per creare un nuovo ordine
+router.post("/create", async (req, res) => {
+  try {
+    const {
+      userId,
+      products,
+      subtotal,
+      total,
+      shipping,
+      paymentStatus,
+    } = req.body;
+
+    // Crea un nuovo ordine utilizzando il modello "Order"
+    const newOrder = new Order({
+      userId,
+      products,
+      subtotal,
+      total,
+      shipping,
+      paymentStatus,
+    });
+
+    // Salva il nuovo ordine nel database
+    const savedOrder = await newOrder.save();
+
+    res.status(201).json(savedOrder);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Errore durante la creazione dell'ordine." });
   }
 });
 
@@ -95,4 +130,82 @@ router.get("/income", isAdmin, async (req, res) => {
   }
 });
 
+//GET orders stats
+
+router.get("/stats", isAdmin, async (req, res) => {
+  const previusMonth = moment()
+  .month(moment().month() - 1)
+  .set("date", 1)
+  .format("YYYY-MM-DD HH:mm:ss");
+
+  try {
+      const orders = await Order.aggregate([
+          {
+              $match: { createdAt: { $gte: new Date(previusMonth)}},
+          },
+          {
+              $project:{
+                  month: {$month: "$createdAt"}
+              }
+          },
+          {
+              $group:{
+                  _id: "$month",
+                  total: {$sum: 1}
+              }
+          }
+      ]);
+      res.status(200).send(orders)
+  } catch (err) {
+      console.log(err);
+      res.status(500).sendStatus(err);
+  }
+
+  // res.send(previusMonth);
+});
+
 module.exports = router;
+
+
+
+
+//GET 1 WEEK SALES
+
+router.get("/week-sales", async (req, res) => {
+  const last7Days = moment()
+  .day(moment().day() - 7)
+  .set("date", 1)
+  .format("YYYY-MM-DD HH:mm:ss");
+
+  try {
+      const orders = await Order.aggregate([
+          {
+              $match: { createdAt: { $gte: new Date(last7Days)}},
+          },
+          {
+              $project:{
+                  day: {$dayOfWeek: "$createdAt"},
+                  sales: "$total"
+              }
+          },
+          {
+              $group:{
+                  _id: "$day",
+                  total: {$sum: "$sales"}
+              }
+          }
+      ]);
+      res.status(200).send(orders)
+  } catch (err) {
+      console.log(err);
+      res.status(500).sendStatus(err);
+  }
+
+  // res.send(previusMonth);
+});
+
+
+
+
+module.exports = router;
+

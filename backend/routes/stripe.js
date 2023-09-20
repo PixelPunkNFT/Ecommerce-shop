@@ -1,6 +1,8 @@
 const express = require("express");
 const Stripe = require("stripe");
-const { Order } = require("../models/Order");
+const {Product} = require('../models/product');
+const {Order} = require('../models/order');
+const mongoose = require('mongoose'); // Importa Mongoose per la gestione degli ObjectId
 
 require("dotenv").config();
 
@@ -9,10 +11,21 @@ const stripe = Stripe(process.env.STRIPE_KEY);
 const router = express.Router();
 
 router.post("/create-checkout-session", async (req, res) => {
+  // Estrai solo le informazioni essenziali da req.body.cartItems
+  const cartItems = req.body.cartItems.map((item) => ({
+    id: item.id,
+    name: item.name,
+    desc: item.desc,
+    price: item.price,
+    cartQuantity: item.cartQuantity,
+    size: item.size,
+  }));
+
   const customer = await stripe.customers.create({
     metadata: {
       userId: req.body.userId,
-      cartItemscount: req.body.cartItems.length,
+      cartItemsCount: cartItems.length,
+      cart: JSON.stringify(cartItems),
     },
   });
 
@@ -22,10 +35,11 @@ router.post("/create-checkout-session", async (req, res) => {
         currency: "eur",
         product_data: {
           name: item.name,
-           //images: [item.image],
+          images: [item.image.url],
           description: item.desc,
           metadata: {
             id: item.id,
+            size: item.size,
           },
         },
         unit_amount: item.price * 100,
@@ -48,7 +62,6 @@ router.post("/create-checkout-session", async (req, res) => {
             currency: "eur",
           },
           display_name: "Spedizione Gratuita",
-          // Delivers between 5-7 business days
           delivery_estimate: {
             minimum: {
               unit: "business_day",
@@ -69,7 +82,6 @@ router.post("/create-checkout-session", async (req, res) => {
             currency: "eur",
           },
           display_name: "Next day air",
-          // Delivers in exactly 1 business day
           delivery_estimate: {
             minimum: {
               unit: "business_day",
@@ -93,7 +105,6 @@ router.post("/create-checkout-session", async (req, res) => {
     cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
 
-  // res.redirect(303, session.url);
   res.send({ url: session.url });
 });
 
@@ -103,21 +114,31 @@ const createOrder = async (customer, data) => {
   const Items = JSON.parse(customer.metadata.cart);
 
   const products = Items.map((item) => {
+    if (!mongoose.Types.ObjectId.isValid(item.id)) {
+      return null;
+    }
+
+    // Converti il prezzo da centesimi a euro
+    const priceInEuro = item.price / 100; // Conversione da centesimi a euro
+
     return {
       productId: item.id,
       quantity: item.cartQuantity,
+      price: priceInEuro, // Salva il prezzo convertito
     };
   });
+
+  const validProducts = products.filter((product) => product !== null);
 
   const newOrder = new Order({
     userId: customer.metadata.userId,
     customerId: data.customer,
     paymentIntentId: data.payment_intent,
-    products,
-    subtotal: data.amount_subtotal,
-    total: data.amount_total,
+    products: validProducts,
+    subtotal: data.amount_subtotal / 100, // Conversione da centesimi a euro
+    total: data.amount_total / 100, // Conversione da centesimi a euro
     shipping: data.customer_details,
-    payment_status: data.payment_status,
+    paymentStatus: data.payment_status,
   });
 
   try {
@@ -128,7 +149,8 @@ const createOrder = async (customer, data) => {
   }
 };
 
-// Stripe webhoook
+
+// Stripe webhook
 
 router.post(
   "/webhook",
@@ -139,7 +161,7 @@ router.post(
 
     // Check if webhook signing is configured.
     let webhookSecret;
-    //webhookSecret = process.env.STRIPE_WEB_HOOK;
+     //webhookSecret = process.env.STRIPE_WEB_HOOK;
 
     if (webhookSecret) {
       // Retrieve the event by verifying the signature using the raw body and secret.
@@ -174,8 +196,29 @@ router.post(
           try {
             // CREATE ORDER
             createOrder(customer, data);
+
+            // Aggiorna la quantità dei prodotti venduti nel database
+            const items = JSON.parse(customer.metadata.cart);
+
+            for (const item of items) {
+              const product = await Product.findById(item.id);
+
+              if (product) {
+                // Trova la taglia corrispondente
+                const sizeToUpdate = product.sizes.find(
+                  (size) => size.size === item.size
+                );
+
+                if (sizeToUpdate && sizeToUpdate.quantity >= item.cartQuantity) {
+                  // Sottrai la quantità venduta
+                  sizeToUpdate.quantity -= item.cartQuantity;
+
+                  // Salva il prodotto aggiornato
+                  await product.save();
+                }
+              }
+            }
           } catch (err) {
-            console.log(typeof createOrder);
             console.log(err);
           }
         })

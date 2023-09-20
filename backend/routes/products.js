@@ -1,8 +1,10 @@
-const { Product } = require("../models/Product");
+const { Product } = require("../models/product");
 const { auth, isUser, isAdmin } = require("../middleware/auth");
 const cloudinary = require("../utils/cloudinary");
 
 const router = require("express").Router();
+
+
 
 //CREATE
 

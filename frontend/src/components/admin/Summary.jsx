@@ -1,37 +1,121 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
-import Widget from "../summary-components/Widget";
-
+import Widget from "../admin/summary-components/Widget";
+import axios from "axios";
+import { setHeaders, url } from "../../slices/api";
+import Chart from "../admin/summary-components/Chart"
+import Transactions from "./summary-components/Transactions";
+import AllTimeData from "./summary-components/AllTimeData";
 
 const Summary = () => {
+
+  const [users, setUsers] = useState([])
+  const [usersPerc, setUsersPerc] = useState(0)
+
+  const [orders, setOrders] = useState([])
+  const [ordersPerc, setOrdersPerc] = useState(0)
+  
+  const [income, setIncome] = useState([])
+  const [incomePerc, setIncomePerc] = useState(0)
+
+  
+  
+  function compare (a, b) {
+    if (a._id < b._id) {
+      return 1;
+    }
+    if (a._id > b._id) {
+      return -1;
+    }
+    return 0;
+  }
+//Fetch Users stats
+  useEffect(() =>{
+    async function fetchData(){
+      try {
+        const res = await axios.get(`${url}/users/stats`, setHeaders())
+        res.data.sort(compare)
+        setUsers(res.data);
+        setUsersPerc(((res.data[0].total - res.data[1].total) / res.data[1].total) * 100 );
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  //Fetch Orders stats
+
+  useEffect(() =>{
+    async function fetchData(){
+      try {
+        const res = await axios.get(`${url}/orders/stats`, setHeaders())
+        res.data.sort(compare)
+        setOrders(res.data);
+        setOrdersPerc(((res.data[0].total - res.data[1].total) / res.data[1].total) * 100 );
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchData()
+  }, [])
+  
+  
+  //Fetch Income Stats
+  
+  useEffect(() =>{
+    async function fetchData(){
+      try {
+        const res = await axios.get(`${url}/orders/week-sales`, setHeaders())
+        res.data.sort(compare)
+        setIncome(res.data);
+        setIncomePerc(((res.data[0].total - res.data[1].total) / res.data[1].total) * 100 );
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+
+
+
   const data = [
     {
       icon: <FaUsers />,
-      digits: 50,
+      digits: users[0]?.total,
       isMoney: false,
-      title: "Users",
+      title: "Utenti",
       color: "rgba(234, 234, 255, 0.68)",
       bgColor: "rgba(234, 234, 255, 0.68, 0.12)",
-      percentage: 30,
+      percentage: usersPerc,
     },
     {
       icon: <FaClipboard />,
-      digits: 50,
+      digits: orders[0]?.total,
       isMoney: false,
-      title: "Orders",
+      title: "Ordini",
       color: "rgba(38, 234, 255, 0.68)",
       bgColor: "rgba(35, 234, 255, 0.68, 0.12)",
-      percentage: 30,
+      percentage: ordersPerc,
     },
     {
       icon: <FaChartBar />,
-      digits: 500,
-      isMoney: true,
-      title: "Earnings",
+      digits: income[0]?.total?.toLocaleString("it-IT", {
+        style: "currency",
+        currency: "EUR",
+      }),
+      isMoney: false,
+      title: "Stima settimanale",
       color: "rgba(123, 234, 255, 0.68)",
       bgColor: "rgba(132, 234, 255, 0.68, 0.12)",
-      percentage: 60,
-    },
+      percentage: incomePerc,
+    }
+    ,
   ];
 
   return (
@@ -39,8 +123,8 @@ const Summary = () => {
       <MainStats>
         <Overview>
           <Title>
-            <h2>Overview</h2>
-            <p>How shopping is performing compared to the previous month</p>
+            <h2>Panoramica</h2>
+            <p>Come stanno andando gli acquisti rispetto alla settimana precedente</p>
           </Title>
           <WidgetWrapper>
             {data?.map((data, index) => (
@@ -48,8 +132,13 @@ const Summary = () => {
             ))}
           </WidgetWrapper>
         </Overview>
+        <Chart/>
+        
       </MainStats>
-      <SideStats></SideStats>
+      <SideStats>
+      <AllTimeData />
+        <Transactions />
+      </SideStats>
     </StyledSummary>
   );
 };
