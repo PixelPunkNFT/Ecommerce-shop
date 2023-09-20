@@ -39,10 +39,10 @@ const Chart = () => {
         res.data.sort(compare);
 
         const newData = res.data.map((item) => {
-          const DAYS = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"]; // Aggiungi gli altri giorni della settimana
+          const DAYS = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"]; 
 
           return {
-            day: DAYS[item._id - 1],
+            day: DAYS[item._id - 2],
             amount: item.total / 1,
           };
         });
@@ -106,7 +106,8 @@ const StyledChart = styled.div`
   padding: 1rem;
   border: 2px solid rgba(48, 51, 78);
   border-radius: 5px;
-  background-color: rgba(234, 234, 255, 0.68, 0.12);
+  background: rgb(48, 51, 78);
+    color: rgba(234, 234, 255, 0.87);
   transition: transform 0.3s, opacity 0.3s; /* Aggiunto effetto di transizione */
 
   &:hover {
@@ -116,6 +117,7 @@ const StyledChart = styled.div`
 
   h3 {
     margin-bottom: 1rem;
+    
   }
 `;
 

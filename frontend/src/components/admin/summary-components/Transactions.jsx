@@ -8,7 +8,7 @@ const Transactions = () => {
     const [orders, setOrders] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    console.log(orders);
+    
 
     useEffect(() => {
         async function fetchData() {
@@ -48,7 +48,7 @@ const Transactions = () => {
 export default Transactions
 
 const StyledTransactions = styled.div`
-    background: rgb(48,51,78);
+    background: rgb(48, 51, 78);
     color: rgba(234, 234, 255, 0.87);
     padding: 1rem;
     border-radius: 5px;
@@ -58,7 +58,7 @@ const StyledTransactions = styled.div`
 
 const Transaction = styled.div`
     display: flex;
-    font-size:  14px;
+    font-size: 14px;
     margin-top: 1rem;
     padding: 0.5rem;
     border-radius: 3px;
@@ -68,5 +68,12 @@ const Transaction = styled.div`
     }
     &:nth-child(even) {
         background: rgba(102, 108, 255, 0.12);
+    }
+
+    /* Aggiungi il codice per l'ingrandimento al passaggio del mouse qui */
+    transition: transform 0.3s; /* Aggiungi una transizione per l'ingrandimento */
+
+    &:hover {
+        transform: scale(1.1); /* Ingrandisci al passaggio del mouse */
     }
 `;

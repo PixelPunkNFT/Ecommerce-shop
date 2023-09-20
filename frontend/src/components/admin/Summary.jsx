@@ -90,7 +90,7 @@ const Summary = () => {
       digits: users[0]?.total,
       isMoney: false,
       title: "Utenti",
-      color: "rgba(234, 234, 255, 0.68)",
+      color: "rgba(123, 234, 255, 0.68)",
       bgColor: "rgba(234, 234, 255, 0.68, 0.12)",
       percentage: usersPerc,
     },

@@ -95,7 +95,7 @@ const CreateProduct = () => {
             <img src={productImg} alt="error!" />
           </>
         ) : (
-          <p>Product image upload preview will appear here!</p>
+          <p>L'anteprima del caricamento dell'immagine del prodotto verrà visualizzata qui!</p>
         )}
       </ImagePreview>
     </StyledCreateProduct>

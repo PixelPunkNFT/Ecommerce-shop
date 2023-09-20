@@ -4,6 +4,7 @@ import styled from "styled-components";
 const AllTimeData = () => {
 
     const {items} = useSelector(state => state.products)
+    
     console.log(items)
 
     return <Main>
