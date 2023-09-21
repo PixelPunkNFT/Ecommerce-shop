@@ -5,7 +5,7 @@ const AllTimeData = () => {
 
     const {items} = useSelector(state => state.products)
     
-    console.log(items)
+    
 
     return <Main>
         <h3>All Time</h3>
@@ -37,6 +37,10 @@ const Main = styled.div`
     font-size: 14px;
     padding: 1rem;
     border-radius: 5px;
+    &:hover {
+    transform: scale(1.35); /* Ingrandisci leggermente al passaggio del mouse */
+    opacity: 1; /* Opacità completa al passaggio del mouse */
+  }
 `;
 
 const Info = styled.div`
@@ -46,12 +50,19 @@ const Info = styled.div`
     padding: 0.5rem;
     border-radius: 3px;
     background: rgba(38, 198, 249, 0.12);
+    
     p {
         flex: 1;
     }
     &:nth-child(even) {
         background: rgba(102, 108, 255, 0.12);
     }
+    &:hover {
+    transform: scale(1.30); /* Ingrandisci leggermente al passaggio del mouse */
+    opacity: 1; /* Opacità completa al passaggio del mouse */
+  }
+
+    
 `;
 
 const Title = styled.div`

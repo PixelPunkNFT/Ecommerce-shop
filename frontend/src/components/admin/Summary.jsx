@@ -172,6 +172,10 @@ const Overview = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  &:hover {
+    transform: scale(1.30); /* Ingrandisci leggermente al passaggio del mouse */
+    opacity: 1; /* Opacità completa al passaggio del mouse */
+  }
 `;
 
 const WidgetWrapper = styled.div`
@@ -186,4 +190,5 @@ const SideStats = styled.div`
   flex-direction: column;
   margin-left: 2rem;
   width: 100%;
+  
 `;

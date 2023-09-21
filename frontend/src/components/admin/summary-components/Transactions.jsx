@@ -54,6 +54,10 @@ const StyledTransactions = styled.div`
     border-radius: 5px;
     margin-top: 1.5rem;
     font-size: 14px;
+    &:hover {
+    transform: scale(1.30); /* Ingrandisci leggermente al passaggio del mouse */
+    opacity: 1; /* Opacità completa al passaggio del mouse */
+  }
 `;
 
 const Transaction = styled.div`
