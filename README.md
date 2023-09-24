@@ -19,39 +19,38 @@ Il backend del nostro ecommerce è responsabile di gestire i dati dei prodotti e
    ```
 
 2. Crea un file \`.env\` nella cartella del backend e inserisci le seguenti informazioni:
-   \`\`\`
-   PORT=3001
-   MONGODB_URI=TUA_STRINGA_DI_CONNESSIONE_MONGODB
-   \`\`\`
+   ```sh
+   INSERISCI LE TUE API RICHIESTE
+   ```
 
 3. Installa le dipendenze del backend utilizzando npm:
-   \`\`\`
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 4. Avvia il backend con nodemon:
-   \`\`\`
+   ```sh
    npm start
-   \`\`\`
+   ```
 
 ## Frontend
 
 Il frontend è ciò che gli utenti vedranno e utilizzeranno per esplorare il tuo negozio online. Per avviare il frontend, segui questi passaggi:
 
 1. Naviga nella cartella del frontend:
-   \`\`\`
+   ```sh
    cd frontend
-   \`\`\`
+   ```
 
 2. Installa le dipendenze del frontend utilizzando npm:
-   \`\`\`
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 3. Avvia il frontend con npm:
-   \`\`\`
+   ```sh
    npm start
-   \`\`\`
+   ```
 
 Ora puoi accedere al frontend tramite il tuo browser all'indirizzo \`http://localhost:3000\` e iniziare a esplorare il nostro negozio online in strutturazione.
 
