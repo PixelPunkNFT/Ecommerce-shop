@@ -4,61 +4,67 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce in Strutturazione</title>
-</head>
-<body>
-    <h1>Ecommerce in Strutturazione</h1>
-    
-    <p>Benvenuti nel progetto Ecommerce in Strutturazione! Questo progetto è in fase di sviluppo e stiamo lavorando su vari progressi e ampliamenti per creare un eccitante negozio online. Siamo orgogliosi di condividere il nostro lavoro con la comunità e apprezziamo qualsiasi contributo o aiuto nell'upgrade del progetto.</p>
+const readme = `
+# Ecommerce in Strutturazione
 
-    <h2>Backend</h2>
-    <p>Il backend del nostro ecommerce è responsabile di gestire i dati dei prodotti e delle API. Per avviare il backend, segui questi passaggi:</p>
+Benvenuti nel progetto Ecommerce in Strutturazione! Questo progetto è in fase di sviluppo e stiamo lavorando su vari progressi e ampliamenti per creare un eccitante negozio online. Siamo orgogliosi di condividere il nostro lavoro con la comunità e apprezziamo qualsiasi contributo o aiuto nell'upgrade del progetto.
 
-    <ol>
-        <li>Naviga nella cartella del backend:</li>
-        <code>cd backend</code>
-        
-        <li>Crea un file <code>.env</code> nella cartella del backend e inserisci le seguenti informazioni:</li>
-        <pre>
-PORT=3001
-MONGODB_URI=TUA_STRINGA_DI_CONNESSIONE_MONGODB
-        </pre>
-        
-        <li>Installare le dipendenze del backend utilizzando npm:</li>
-        <code>npm install</code>
-        
-        <li>Avvia il backend con nodemon:</li>
-        <code>npm start</code>
-    </ol>
+## Backend
 
-    <h2>Frontend</h2>
-    <p>Il frontend è ciò che gli utenti vedranno e utilizzeranno per esplorare il tuo negozio online. Per avviare il frontend, segui questi passaggi:</p>
+Il backend del nostro ecommerce è responsabile di gestire i dati dei prodotti e delle API. Per avviare il backend, segui questi passaggi:
 
-    <ol>
-        <li>Naviga nella cartella del frontend:</li>
-        <code>cd frontend</code>
-        
-        <li>Installare le dipendenze del frontend utilizzando npm:</li>
-        <code>npm install</code>
-        
-        <li>Avvia il frontend con npm:</li>
-        <code>npm start</code>
-    </ol>
+1. Naviga nella cartella del backend:
+   \`\`\`
+   cd backend
+   \`\`\`
 
-    <p>Ora puoi accedere al frontend tramite il tuo browser all'indirizzo <code>http://localhost:3000</code> e iniziare a esplorare il nostro negozio online in strutturazione.</p>
+2. Crea un file \`.env\` nella cartella del backend e inserisci le seguenti informazioni:
+   \`\`\`
+   PORT=3001
+   MONGODB_URI=TUA_STRINGA_DI_CONNESSIONE_MONGODB
+   \`\`\`
 
-    <h2>Contributi</h2>
-    <p>Siamo aperti ai contributi e agli upgrade da parte della comunità. Se hai suggerimenti, correzioni o nuove funzionalità da aggiungere, sentiti libero di aprire una issue o inviare una pull request. Grazie per il tuo interesse nel nostro progetto!</p>
+3. Installa le dipendenze del backend utilizzando npm:
+   \`\`\`
+   npm install
+   \`\`\`
 
-    <h2>Licenza</h2>
-    <p>Questo progetto è distribuito con licenza MIT. Per ulteriori dettagli, consulta il file LICENSE.</p>
-</body>
-</html>
+4. Avvia il backend con nodemon:
+   \`\`\`
+   npm start
+   \`\`\`
+
+## Frontend
+
+Il frontend è ciò che gli utenti vedranno e utilizzeranno per esplorare il tuo negozio online. Per avviare il frontend, segui questi passaggi:
+
+1. Naviga nella cartella del frontend:
+   \`\`\`
+   cd frontend
+   \`\`\`
+
+2. Installa le dipendenze del frontend utilizzando npm:
+   \`\`\`
+   npm install
+   \`\`\`
+
+3. Avvia il frontend con npm:
+   \`\`\`
+   npm start
+   \`\`\`
+
+Ora puoi accedere al frontend tramite il tuo browser all'indirizzo \`http://localhost:3000\` e iniziare a esplorare il nostro negozio online in strutturazione.
+
+## Contributi
+
+Siamo aperti ai contributi e agli upgrade da parte della comunità. Se hai suggerimenti, correzioni o nuove funzionalità da aggiungere, sentiti libero di aprire una issue o inviare una pull request. Grazie per il tuo interesse nel nostro progetto!
+
+## Licenza
+
+Questo progetto è distribuito con licenza MIT. Per ulteriori dettagli, consulta il file LICENSE.
+`;
+
+console.log(readme);
 
 
 
