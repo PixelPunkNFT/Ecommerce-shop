@@ -1,8 +1,6 @@
 const { Order } = require("../models/order");
-// const { Order } = require("../models/order");
 const { auth, isUser, isAdmin } = require("../middleware/auth");
 const moment = require("moment");
-
 
 const router = require("express").Router();
 
@@ -134,78 +132,99 @@ router.get("/income", isAdmin, async (req, res) => {
 
 router.get("/stats", isAdmin, async (req, res) => {
   const previusMonth = moment()
-  .month(moment().month() - 1)
-  .set("date", 1)
-  .format("YYYY-MM-DD HH:mm:ss");
+    .month(moment().month() - 1)
+    .set("date", 1)
+    .format("YYYY-MM-DD HH:mm:ss");
 
   try {
-      const orders = await Order.aggregate([
-          {
-              $match: { createdAt: { $gte: new Date(previusMonth)}},
-          },
-          {
-              $project:{
-                  month: {$month: "$createdAt"}
-              }
-          },
-          {
-              $group:{
-                  _id: "$month",
-                  total: {$sum: 1}
-              }
-          }
-      ]);
-      res.status(200).send(orders)
+    const orders = await Order.aggregate([
+      {
+        $match: { createdAt: { $gte: new Date(previusMonth) } },
+      },
+      {
+        $project: {
+          month: { $month: "$createdAt" },
+        },
+      },
+      {
+        $group: {
+          _id: "$month",
+          total: { $sum: 1 },
+        },
+      },
+    ]);
+    res.status(200).send(orders);
   } catch (err) {
-      console.log(err);
-      res.status(500).sendStatus(err);
+    console.log(err);
+    res.status(500).send(err);
   }
-
-  // res.send(previusMonth);
 });
 
-module.exports = router;
+// GET TOTAL ORDERS COUNT
+router.get("/total-orders",  async (req, res) => {
+  try {
+    const totalCount = await Order.countDocuments();
+    res.status(200).json({ totalOrders: totalCount });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+});
 
-
-
-
-//GET 1 WEEK SALES
-
-router.get("/week-sales", async (req, res) => {
+// GET 1 WEEK SALES
+router.get("/week-sales", isAdmin, async (req, res) => {
   const last7Days = moment()
-  .day(moment().day() - 7)
-  .set("date", 1)
-  .format("YYYY-MM-DD HH:mm:ss");
+    .day(moment().day() - 7)
+    .set("date", 1)
+    .format("YYYY-MM-DD HH:mm:ss");
 
   try {
-      const orders = await Order.aggregate([
-          {
-              $match: { createdAt: { $gte: new Date(last7Days)}},
-          },
-          {
-              $project:{
-                  day: {$dayOfWeek: "$createdAt"},
-                  sales: "$total"
-              }
-          },
-          {
-              $group:{
-                  _id: "$day",
-                  total: {$sum: "$sales"}
-              }
-          }
-      ]);
-      res.status(200).send(orders)
+    const orders = await Order.aggregate([
+      {
+        $match: { createdAt: { $gte: new Date(last7Days) } },
+      },
+      {
+        $project: {
+          day: { $dayOfWeek: "$createdAt" },
+          sales: "$total",
+        },
+      },
+      {
+        $group: {
+          _id: "$day",
+          total: { $sum: "$sales" },
+        },
+      },
+    ]);
+    res.status(200).send(orders);
   } catch (err) {
-      console.log(err);
-      res.status(500).sendStatus(err);
+    console.log(err);
+    res.status(500).send(err);
   }
+});
 
-  // res.send(previusMonth);
+// Aggiungi questa route API alla fine del tuo file order.js
+router.get("/total-earnings",  async (req, res) => {
+  try {
+    const earnings = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
+          total: { $sum: "$total" },
+        },
+      },
+    ]);
+
+    if (earnings.length > 0) {
+      res.status(200).json({ totalEarnings: earnings[0].total });
+    } else {
+      res.status(404).json({ error: "Nessun dato disponibile" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
 });
 
 
-
-
 module.exports = router;
-

@@ -111,7 +111,7 @@ const StyledChart = styled.div`
   transition: transform 0.3s, opacity 0.3s; /* Aggiunto effetto di transizione */
 
   &:hover {
-    transform: scale(1.30); /* Ingrandisci leggermente al passaggio del mouse */
+    transform: scale(1.10); /* Ingrandisci leggermente al passaggio del mouse */
     opacity: 1; /* Opacità completa al passaggio del mouse */
   }
 
