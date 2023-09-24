@@ -14,7 +14,7 @@ Benvenuti nel progetto Ecommerce in Strutturazione! Questo progetto è in fase d
 Il backend del nostro ecommerce è responsabile di gestire i dati dei prodotti e delle API. Per avviare il backend, segui questi passaggi:
 
 1. Naviga nella cartella del backend:
-   ```sh`
+   ```sh
    cd backend
    ```
 
