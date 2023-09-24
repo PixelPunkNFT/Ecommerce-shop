@@ -1,4 +1,3 @@
-const readme = `
 # Ecommerce in Strutturazione
 
 Benvenuti nel progetto Ecommerce in Strutturazione! Questo progetto è in fase di sviluppo e stiamo lavorando su vari progressi e ampliamenti per creare un eccitante negozio online. Siamo orgogliosi di condividere il nostro lavoro con la comunità e apprezziamo qualsiasi contributo o aiuto nell'upgrade del progetto.
