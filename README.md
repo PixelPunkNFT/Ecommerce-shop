@@ -1,9 +1,3 @@
-# shop
-
-![Immagine 2023-09-24 165916](https://github.com/PixelPunkNFT/shop/assets/81959327/d4ee3f3e-3dfb-44ef-bed4-9b969786c762)
-
-
-
 const readme = `
 # Ecommerce in Strutturazione
 
@@ -63,7 +57,16 @@ Siamo aperti ai contributi e agli upgrade da parte della comunità. Se hai sugge
 Questo progetto è distribuito con licenza MIT. Per ulteriori dettagli, consulta il file LICENSE.
 `;
 
-console.log(readme);
+
+
+
+![Immagine 2023-09-24 165916](https://github.com/PixelPunkNFT/shop/assets/81959327/d4ee3f3e-3dfb-44ef-bed4-9b969786c762)
+
+
+
+![Immagine 2023-09-24 171656](https://github.com/PixelPunkNFT/shop/assets/81959327/c41cb88d-cbea-4822-a1db-8dc6d97280b9)
+
+![Immagine 2023-09-24 171717](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-81e2-d59ab6e52d5a)
 
 
 
