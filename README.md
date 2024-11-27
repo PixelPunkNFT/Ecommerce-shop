@@ -3,6 +3,13 @@
 # Ecommerce in Development
 
 Welcome to the Ecommerce in Development project! This project is currently under development, and we are working on various improvements and expansions to create an exciting online store. We are proud to share our work with the community and appreciate any contributions or help with upgrading the project.
+![Admin Page Image](https://github.com/PixelPunkNFT/shop/assets/81959327/d4ee3f3e-3dfb-44ef-bed4-9b969786c762)
+
+![Home Page Image](https://github.com/PixelPunkNFT/shop/assets/81959327/c41cb88d-cbea-4822-a1db-8dc6d97280b9)
+ Payment Method
+
+![Payment Method Image](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-81e2-d59ab6e52d5a)
+
 
 ## Backend
 
@@ -59,15 +66,6 @@ This project is distributed under the MIT License. For more details, please refe
 
 
  
-
-Admin Page Image(https://github.com/PixelPunkNFT/shop/assets/81959327/d4ee3f3e-3dfb-44ef-bed4-9b969786c762)
-
- 
-
-![Home Page Image](https://github.com/PixelPunkNFT/shop/assets/81959327/c41cb88d-cbea-4822-a1db-8dc6d97280b9)
- Payment Method
-
-![Payment Method Image](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-81e2-d59ab6e52d5a)
 
 
 
