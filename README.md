@@ -71,6 +71,6 @@ This project is distributed under the MIT License. For more details, please refe
 
 ![Payment Method Image](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-81e2-d59ab6e52d5a)
 
----
 
-This translation keeps the structure and content intact while providing an English version of the original text.
+
+
