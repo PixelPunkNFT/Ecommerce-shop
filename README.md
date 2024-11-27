@@ -2,6 +2,8 @@
 
 ### Ecommerce in Development
 
+![MongoDB](https://img.shields.io/badge/-MongoDB-green) ![Express](https://img.shields.io/badge/-Express-blue) ![React](https://img.shields.io/badge/-React-blue) ![Node.js](https://img.shields.io/badge/-Node.js-green)
+
 Welcome to the Ecommerce in Development project! We are thrilled to have you here. This is an exciting and ongoing project that is currently under active development, with a vision to create a highly functional and user-friendly online store. Our goal is to build an ecommerce platform that provides an exceptional shopping experience, offering a wide range of features, seamless navigation, and secure payment options.
 
 Right now, we are focused on a variety of improvements and expansions to ensure the platform meets the needs of both users and administrators. This includes refining the user interface, enhancing the backend performance, integrating multiple payment methods, and optimizing the overall functionality of the site. We are dedicated to delivering a top-quality ecommerce solution that can scale and adapt to future needs.
