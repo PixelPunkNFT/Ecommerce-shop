@@ -1,3 +1,6 @@
+Here is the translated version of the `README.md` file in English:
+
+```markdown
 # Ecommerce in Development
 
 Welcome to the Ecommerce in Development project! This project is currently under development, and we are working on various improvements and expansions to create an exciting online store. We are proud to share our work with the community and appreciate any contributions or help with upgrading the project.
@@ -9,50 +12,52 @@ The backend of our ecommerce is responsible for managing product data and APIs. 
 1. Navigate to the backend folder:
    ```sh
    cd backend
+   ```
 
-   Create a .env file in the backend folder and insert the following information:
+2. Create a `.env` file in the backend folder and insert the following information:
+   ```sh
+   INSERT YOUR REQUIRED API KEYS
+   ```
 
-sh
-Copia codice
-INSERT YOUR REQUIRED API KEYS
-Install the backend dependencies using npm:
+3. Install the backend dependencies using npm:
+   ```sh
+   npm install
+   ```
 
-sh
-Copia codice
-npm install
-Start the backend with nodemon:
+4. Start the backend with nodemon:
+   ```sh
+   npm start
+   ```
 
-sh
-Copia codice
-npm start
-Frontend
+## Frontend
+
 The frontend is what users will see and interact with to explore your online store. To start the frontend, follow these steps:
 
-Navigate to the frontend folder:
+1. Navigate to the frontend folder:
+   ```sh
+   cd frontend
+   ```
 
-sh
-Copia codice
-cd frontend
-Install the frontend dependencies using npm:
+2. Install the frontend dependencies using npm:
+   ```sh
+   npm install
+   ```
 
-sh
-Copia codice
-npm install
-Start the frontend with npm:
+3. Start the frontend with npm:
+   ```sh
+   npm start
+   ```
 
-sh
-Copia codice
-npm start
-You can now access the frontend via your browser at http://localhost:3000 and start exploring our online store in development.
+You can now access the frontend via your browser at `http://localhost:3000` and start exploring our online store in development.
 
-Contributions
+## Contributions
+
 We welcome contributions and upgrades from the community. If you have suggestions, fixes, or new features to add, feel free to open an issue or submit a pull request. Thank you for your interest in our project!
 
-License
-This project is distributed under the MIT License. For more details, please refer to the LICENSE file.
+## License
 
-yaml
-Copia codice
+This project is distributed under the MIT License. For more details, please refer to the LICENSE file.
+```
 
 ### Admin Page
 
@@ -64,4 +69,8 @@ Copia codice
 
 ### Payment Method
 
-![Payment Method Image](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-8
+![Payment Method Image](https://github.com/PixelPunkNFT/shop/assets/81959327/82831648-ce82-4b9c-81e2-d59ab6e52d5a)
+
+---
+
+This translation keeps the structure and content intact while providing an English version of the original text.
