@@ -11,6 +11,10 @@ As part of our commitment to continuous improvement, we are actively working on 
 Whether you're an experienced developer, a designer, or someone passionate about ecommerce, your input is invaluable in helping us build the best possible product. So feel free to dive into the project, explore the code, and join us in making this ecommerce platform a truly remarkable online store.
 
 Thank you for being part of this journey with us. Your support, contributions, and enthusiasm are what will help us bring this project to life and create a great shopping experience for everyone. Stay
+
+
+
+
 ![Admin Page Image](https://github.com/PixelPunkNFT/shop/assets/81959327/d4ee3f3e-3dfb-44ef-bed4-9b969786c762)
 
 ![Home Page Image](https://github.com/PixelPunkNFT/shop/assets/81959327/c41cb88d-cbea-4822-a1db-8dc6d97280b9)
