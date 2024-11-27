@@ -1,6 +1,5 @@
-Here is the translated version of the `README.md` file in English:
 
-```markdown
+
 # Ecommerce in Development
 
 Welcome to the Ecommerce in Development project! This project is currently under development, and we are working on various improvements and expansions to create an exciting online store. We are proud to share our work with the community and appreciate any contributions or help with upgrading the project.
